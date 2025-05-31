@@ -42,7 +42,7 @@
         <label>Slayer 3: <input type="text" id="slayer3"></label>
         <label>Slayer 4: <input type="text" id="slayer4"></label>
         <br>
-        <button onclick="generateTeams()">Generate Teams</button>
+        <button onclick="setTeams()">Set Teams</button>
     </div>
     
     <div class="team-container">
@@ -63,6 +63,7 @@
         let team1 = {};
         let team2 = {};
         
+        // if the slayers are the same as as the previous (either exact same or different order, reshuffle until they are not)
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -70,7 +71,7 @@
             }
         }
         
-        function generateTeams() {
+        function setTeams() {
             let backline1 = document.getElementById("backline1").value;
             let backline2 = document.getElementById("backline2").value;
             let support1 = document.getElementById("support1").value;
