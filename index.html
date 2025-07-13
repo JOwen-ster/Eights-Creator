@@ -1,112 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Splatoon 8's Team Generator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        .team-container {
-            margin: 20px auto;
-            width: 50%;
-            padding: 10px;
-            border: 2px solid black;
-        }
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            font-size: 16px;
-        }
-        .input-container {
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <h1>8's Creator</h1>
-    
-    <div class="input-container">
-        <h3>Enter Players:</h3>
-        <label>Backline 1: <input type="text" id="backline1"></label>
-        <label>Backline 2: <input type="text" id="backline2"></label>
-        <br>
-        <label>Support 1: <input type="text" id="support1"></label>
-        <label>Support 2: <input type="text" id="support2"></label>
-        <br>
-        <label>Slayer 1: <input type="text" id="slayer1"></label>
-        <label>Slayer 2: <input type="text" id="slayer2"></label>
-        <label>Slayer 3: <input type="text" id="slayer3"></label>
-        <label>Slayer 4: <input type="text" id="slayer4"></label>
-        <br>
-        <button onclick="setTeams()">Set Teams</button>
-    </div>
-    
-    <div class="team-container">
-        <h2>Team 1</h2>
-        <p id="team1"></p>
-    </div>
-    
-    <h2>vs</h2>
-    
-    <div class="team-container">
-        <h2>Team 2</h2>
-        <p id="team2"></p>
-    </div>
-    
-    <button onclick="swapAndShuffle()">Shuffle Teams</button>
-    
-    <script>
-        let team1 = {};
-        let team2 = {};
-        
-        // if the slayers are the same as as the previous (either exact same or different order, reshuffle until they are not)
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-        }
-        
-        function setTeams() {
-            let backline1 = document.getElementById("backline1").value;
-            let backline2 = document.getElementById("backline2").value;
-            let support1 = document.getElementById("support1").value;
-            let support2 = document.getElementById("support2").value;
-            let slayers = [
-                document.getElementById("slayer1").value,
-                document.getElementById("slayer2").value,
-                document.getElementById("slayer3").value,
-                document.getElementById("slayer4").value
-            ];
-            
-            shuffleArray(slayers);
-            
-            team1 = { Backline: backline1, Support: support1, Slayers: slayers.slice(0, 2) };
-            team2 = { Backline: backline2, Support: support2, Slayers: slayers.slice(2) };
-            
-            updateDisplay();
-        }
-        
-        function swapAndShuffle() {
-            [team1.Support, team2.Support] = [team2.Support, team1.Support];
-            
-            let allSlayers = [...team1.Slayers, ...team2.Slayers];
-            shuffleArray(allSlayers);
-            
-            team1.Slayers = allSlayers.slice(0, 2);
-            team2.Slayers = allSlayers.slice(2);
-            
-            updateDisplay();
-        }
-        
-        function updateDisplay() {
-            document.getElementById("team1").innerText = `Backline: ${team1.Backline}\nSupport: ${team1.Support}\nSlayers: ${team1.Slayers.join(", ")}`;
-            document.getElementById("team2").innerText = `Backline: ${team2.Backline}\nSupport: ${team2.Support}\nSlayers: ${team2.Slayers.join(", ")}`;
-        }
-    </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
