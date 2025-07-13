@@ -202,6 +202,9 @@ function App() {
         8's Creator
         <Crown className="title-icon" />
       </h1>
+      <h3 className="sub-title">
+        Created By Typos (typos. on discord)
+      </h3>
 
       <div className="input-container">
         <h3>

@@ -16,13 +16,21 @@ html, body{
 .title {
   color: #ffffff;
   font-size: 3rem;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 15px;
   font-weight: bold;
+}
+
+.sub-title {
+  color: #f2f2f2;
+  font-size: 1rem;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+  text-align: inherit;
 }
 
 .title-icon {
