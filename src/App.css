@@ -152,7 +152,6 @@ html, body{
   min-width: 300px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   transition: all 0.3s ease;
-  border: 3px solid rgba(255, 255, 255, 0.2);
 }
 
 .team-container:hover {

@@ -11,12 +11,11 @@ interface Team {
 interface TeamCardProps {
   team: Team;
   teamName: string;
-  isAlpha: boolean;
 }
 
 function TeamCard(props: TeamCardProps) {
   return (
-    <div className={`team-container ${props.isAlpha ? "alpha" : "bravo"}`}>
+    <div className="team-container">
       <h2 className="team-title">
         <Crown className="team-icon" />
         {props.teamName}
@@ -235,8 +234,8 @@ function App() {
       </div>
 
       <div className="teams-section">
-        <TeamCard team={alphaTeam} teamName="Team Alpha" isAlpha={true} />
-        <TeamCard team={bravoTeam} teamName="Team Bravo" isAlpha={false} />
+        <TeamCard team={alphaTeam} teamName="Team Alpha"/>
+        <TeamCard team={bravoTeam} teamName="Team Bravo"/>
       </div>
 
       <button className="shuffle-button" onClick={shuffleTeams}>
