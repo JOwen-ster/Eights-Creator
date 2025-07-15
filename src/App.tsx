@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Users, Shuffle, Target, Shield, Sword, Crown } from "lucide-react";
+import toast, {Toaster} from "react-hot-toast";
 import "./App.css";
 
 interface Team {
@@ -96,16 +97,21 @@ function App() {
       players.slayer4,
     ].filter((s) => s.trim() !== "");
 
-    if (slayers.length === 4) {
-      const shuffledSlayers = shuffleArray(slayers);
+    if (slayers.length === 4 &&
+      players.backline1 &&
+      players.backline2 &&
+      players.support1 &&
+      players.support2
+    ) {
+      const shuffledSlayers: string[] = shuffleArray(slayers);
 
-      const newAlpha = {
+      const newAlpha: Team = {
         backline: players.backline1,
         support: players.support1,
         slayers: shuffledSlayers.slice(0, 2),
       };
 
-      const newBravo = {
+      const newBravo: Team = {
         backline: players.backline2,
         support: players.support2,
         slayers: shuffledSlayers.slice(2),
@@ -134,12 +140,9 @@ function App() {
   useEffect(generateTeams, [players]);
 
   const shuffleTeams = () => {
-    if (
-      !alphaTeam.backline ||
-      !alphaTeam.support ||
-      alphaTeam.slayers.length === 0
-    ) {
-      alert("Please fill in all player names before shuffling!");
+    const allPlayersHaveValues = Object.values(players).every(value => value.trim() !== "");
+    if ( !allPlayersHaveValues ) {
+      toast.error("Please fill in all player names before shuffling!");
       return;
     }
 
@@ -158,7 +161,7 @@ function App() {
       attempts++;
     } while (
       (areSlayersEqual(newAlphaSlayers, prevSlayers.alpha) ||
-        areSlayersEqual(newBravoSlayers, prevSlayers.bravo)) &&
+      areSlayersEqual(newBravoSlayers, prevSlayers.bravo)) &&
       attempts < 100
     );
 
@@ -171,6 +174,7 @@ function App() {
       alpha: [...newAlphaSlayers],
       bravo: [...newBravoSlayers],
     });
+    toast.success("Re-shuffled teams!")
   };
 
   const inputGroups = [
@@ -196,6 +200,9 @@ function App() {
 
   return (
     <div className="app">
+      <Toaster
+        position="bottom-right"
+      />
       <h1 className="title">
         <Crown className="title-icon" />
         8's Creator
@@ -206,7 +213,7 @@ function App() {
       </h3>
 
       <div className="input-container">
-        <h3>
+        <h3 className="input-title">
           <Users className="section-icon" />
           Enter Players:
         </h3>
