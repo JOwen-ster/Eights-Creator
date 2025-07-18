@@ -159,9 +159,11 @@ function App() {
       newAlphaSlayers = shuffled.slice(0, 2);
       newBravoSlayers = shuffled.slice(2);
       attempts++;
-    } while (
-      (areSlayersEqual(newAlphaSlayers, prevSlayers.alpha) ||
-      areSlayersEqual(newBravoSlayers, prevSlayers.bravo)) &&
+    } while ((
+      areSlayersEqual(newAlphaSlayers, prevSlayers.alpha) ||
+      areSlayersEqual(newBravoSlayers, prevSlayers.bravo) ||
+      areSlayersEqual(newAlphaSlayers, prevSlayers.bravo) ||
+      areSlayersEqual(newBravoSlayers, prevSlayers.alpha)) &&
       attempts < 100
     );
 
